@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#home">Home</a>
+              <a class="nav-link active" href="#absen">Absensi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#tentang">Tentang PMR</a>
@@ -145,14 +145,61 @@
                 <div class="col-md-4 text-center">
                     <h3>Materi</h3>
                         <p class="form-control fw-bold text-center" style="height: 100px">
-                            Klik Disini ya!<br><a href="..."><button type="button" class="btn btn-info"><i class="bi bi-folder2-open"></i></button></a>
+                            Klik Disini ya!<br>
+                            <a href="https://drive.google.com/drive/folders/1hMX5f58T1OHt6-Ouf96rCtu06Pxq2ga4" target="_blank"><button type="button" class="btn btn-info"><i class="bi bi-folder2-open"></i></button>
+                            </a>
                         </p>
                 </div>
             </div>
         </div>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffa07a" fill-opacity="1" d="M0,128L48,112C96,96,192,64,288,69.3C384,75,480,117,576,160C672,203,768,245,864,266.7C960,288,1056,288,1152,250.7C1248,213,1344,139,1392,101.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>    <!-- end materi -->
 
-<!--  -->
+<!-- end materi -->
+
+<!-- Absensi PMR -->
+<section id="absen">
+    <div class="container">
+        <div class="row text-center mb-3">
+            <div class="col">
+                <h2>Absensi PMR</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-md-6">
+                <div class="alert alert-warning alert-dismissible fade show d-none myalert" role="alert">
+                    Terima Kasih! Absensi Kamu <strong>Sudah Terkirim!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <form name="Absensi-PMR">
+                    <div class="mb-3 text-center">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" aria-describedby="nama" name="nama">
+                    <div id="emailHelp" class="form-text">Ketikan Nama Lengkap dengan benar</div>
+                </div>
+                    <div class="mb-3 text-center">
+                        <label for="kelas" class="form-label"> Kelas </label>
+                        <input type="text" class="form-control" id="kelas" aria-describedby="kelas" name="kelas">
+                    <div id="emailHelp" class="form-text">Ketikan Kelas, contoh "8H"</div>
+                </div>
+                    <div class="mb-3 text-center">
+                        <label for="keterangan" class="form-label">Keterangan Absen</label>
+                        <input type="text" class="form-control" id="keterangan" aria-describedby="keterangan" name="keterangan">
+                    <div id="emailHelp" class="form-text">Ketikan keterangan Absen "Sakit / Izin"</div>
+                </div>         
+                    <button type="submit" class="btn btn-danger btn-kirim">Kirim</button>
+
+                    <button class="btn btn-danger btn-loading d-none" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+</section>
+<!-- End Absensi-->
+
     <!-- contact -->
     <section id="contact">
         <div class="container">
@@ -212,5 +259,32 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwoK7SUzO95oHQb49yFl2c5vqobnnN30iWkTYiNqET5rQNxTuhr6H9YDV4gjwpWz3sV/exec';
+  const form = document.forms['Absensi-PMR']
+  const btnKirim = document.querySelector('.btn-kirim')
+  const btnLoading = document.querySelector('.btn-loading')
+  const myalert = document.querySelector('.myalert')
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    //ketika tombol di klik
+    btnLoading.classList.toggle('d-none')
+    btnKirim.classList.toggle('d-none')
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        //tampilkan tombol kirim
+        btnLoading.classList.toggle('d-none')
+        btnKirim.classList.toggle('d-none')
+        //alert
+        myalert.classList.toggle('d-none')
+        //reset
+        form.reset();
+        console.log('Success!', response)
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
   </body>
 </html>

@@ -9,10 +9,18 @@
 }
 
 #contact {
-  background-color: #ffa07a;
+  background-color: #fff;
   padding-top: 4rem;
 }
 
+#absen {
+  background-color: #ffa07a;
+  padding-top: rem;
+}
+
+.form-text {
+  color: whitesmoke;
+}
 section {
   padding-top: 6rem;
 }
